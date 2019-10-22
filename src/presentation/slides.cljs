@@ -14,10 +14,6 @@
                    padding-left: 0.25em;"}]]
    [:h6 "and Dan Harasymiw"]])
 
-; TODO make a function for nested lists, might be a good example too
-
-; Example of how data structures are trees and how copies aren't expensive to make
-
 (def history
   [:section [:section
              [:h2 "Quick history of me and my experience (No Expert!)"]
@@ -48,7 +44,7 @@
 
 (def what-is-functional-programming
   [:section
-   [:h2 "What is Functional Programming? (TLDR)"]
+   [:h3 "What is Functional Programming? (TLDR)"]
    [:ul
     [:li "Programs are made with functons"]
     [:ul
@@ -56,21 +52,17 @@
     [:li "Avoids changing state and mutating data"]
     [:li "Common characteristics of a functional language are:"]
     [:ul
-     [:li "Immutability"]
-     [:li "Higher Order Functions"]
-     [:li "Laziness"]
-     [:li "Purity and Referential Transparency"]]]])
+     [:li "Immutability, higher order functions, laziness, purity and referential transparency"]]]])
 
-; in java - strings are immutable, objects themselves are mutable (contents isn't)..i think?
 (def immutability
   [:section
    [:section
-    [:h2 "Immutability"]
+    [:h3 "Immutability"]
     [:ul
      [:li "Cannot modify inputs to function"]
      [:li "Cannot modify sate outside of functions scope"]]]
    [:section
-    [:h2 "Why is Mutability Harmful?"]
+    [:h3 "Why is Mutability Harmful?"]
     [:pre
      [:code {:class "hljs java" :data-line-numbers "1,3,4" :data-trim true :data-noescape true}
       "
@@ -83,11 +75,9 @@ int doSomething(int y) {
     ""]
    ])
 
-; TODO explain how a pure program can still do useful things
-
 (def referential-transparency
   [:section
-   [:h2 "Referential Transparency"]
+   [:h3 "Referential Transparency"]
    [:ul
     [:li "You can replace the call to a function with a value you would expect it to return"]
     [:ul
@@ -98,7 +88,7 @@ int doSomething(int y) {
 
 (def higher-order-functions
   [:section
-   [:h2 "Higher Order Functions"]
+   [:h3 "Higher Order Functions"]
    [:ul
     [:li "A function that can do one of, or both of the following:"]
     [:ul
@@ -106,32 +96,96 @@ int doSomething(int y) {
      [:li "Return a new function as output"]]
     [:li "Allows you to create a bunch of small distinct functions and combine them together (function composition)"]]])
 
-; threading comparison perhaps?
-
 (def laziness
   [:section
    [:section
-    [:h2 "Lazy Evaluation"]
+    [:h3 "Lazy Evaluation"]
     [:ul
-     [:li "Possible due to referential transparency"]
-     [:li "Delays the evaluation of expressions until needed"]
+     [:li "Delays the evaluation of expressions until needed and is possible due to referential transparency"]
      [:ul
-      [:li "If the value isn't needed yet, why bother calculating it?"]]]]
+      [:li "If the value isn't needed yet, why bother calculating it?"]]
+     [:li "This allows for some cool things..."]]]
    ; TODO too busy and would be good to have some examples
    ; actually, we could iframe repl.it examples perhaps instead of having to use the mac's repl
    [:section
-    [:ul
-     [:li "This allows for some cool things"]
-     [:ul
-      [:li "A list of infinite size (value not determined until accessed)"]
-      [:li "Can be used powerfully with higher order functions"]
-      [:ul
-       [:li "A function that multiplies a number by itself"]
-       [:li "A HOF that takes a list, a func, and applies that function to each element (map)"]
-       [:li "Combining those two functions gives us back a list of all numbers to the power of 2, with no computation expended until we access one of the multiples"]]]]]])
+    [:h3 "A list of infinite size (value not determined until accessed)"]
+    [:pre
+     [:code {:class "hljs clojure" :data-trim true :data-noescape true}
+      "
+(def infinite-list (repeat \"INFINITE\"))
 
-; recursion / tail recursion? Why it's not inefficient?
-; broader topic of BUT MAI LOOPS!
+(first infinite-list) ; => \"INFINITE\"
+
+(take 5 infinite-list) ; => (\"INFINITE\" \"INFINITE\" \"INFINITE\" \"INFINITE\" \"INFINITE\")
+"]]]
+   [:section
+    [:h3 "Higher Order Function Example"]
+    [:pre
+     [:code {:class "hljs clojure" :data-trim true :data-noescape true}
+      "
+; Given a list of numbers, we'd like to square them all
+(def numbers '(1 2 3 4 5))
+
+; Create a function that squares the number
+(defn multiply-number [n]
+  (* n n))
+
+; Map that function onto the elements of the list
+; Where's the loop!?
+(map multiply-number numbers) ; => (1 4 9 16 25)
+"]]]])
+
+(def macros
+  [:section
+   [:section
+    [:h3 "The code is data"]
+    [:ul
+     [:li "One common theme in LISP style languages is that the code is at the end of the day, a list, data."]
+     [:li "Well if the code is data, that means we can manipulate and extend it however we want"]
+     [:li "If you don't like something about Clojure or want to add something, you actually can"]]]
+   [:section
+    [:h3 "A simple macro"]
+    [:p "A macro will, at compile-time, modify the code represented as a list and return it.  The possibilities are endless"]
+    [:pre
+     [:code {:class "hljs clojure" :data-trim true :data-noescape true}
+      "
+(defmacro infix
+  \"Prefix notation got you down, here, take this!\"
+  [infixed]
+  (list (second infixed) (first infixed) (last infixed)))
+
+(infix (1 + 1)) ; => 2
+
+; Let's see what the macro generates
+(macroexpand '(infix (1 + 1))) ; => (+ 1 1)
+"]]]])
+
+(def companies
+  [:section
+   [:section
+    [:h3 "Companies that use Functional Languages"]
+    [:ul
+     [:li [:a {:href "https://blog.discordapp.com/scaling-elixir-f9b8e1e7c29b"} "How Discord Scaled Elixir to 5,000,000 Concurrent Users"]]
+     [:li [:a {:href "https://engineering.fb.com/security/fighting-spam-with-haskell/"} "Facebook - Fighting spam with Haskell"]]
+     [:li [:a {:href "http://blog.cognitect.com/blog/2015/6/30/walmart-runs-clojure-at-scale"} "Walmart Runs Clojure at Scale"]]
+     [:li [:a {:href "https://blog.developer.atlassian.com/why-clojure/"} "Atlassian - Why you should use Clojure for your next microservice"]]
+     [:li [:a {:href "https://www.salttoday.ca"} "SaltToday.ca uses Clojure to make a mockery of SooToday's comments"]]]]])
+
+(def resources
+  [:section
+   [:section
+    [:h3 "A collection of resources on functional programming and Clojure"]
+    [:ul
+     [:li [:a {:href "https://www.braveclojure.com/clojure-for-the-brave-and-true/"} "Free beginner level Clojure book"]]
+     [:li [:a {:href "http://clojuredocs.org/"} "Clojure documentation website"]]
+     [:li [:a {:href "https://exercism.io/"} "Programming problems for various languages, offers mentorship feedback as well"]]
+     [:li [:a {:href "http://learnyouahaskell.com/chapters"} "Free beginner level Haskell book"]]
+     [:li [:a {:href "http://www.buildyourownlisp.com/contents"} "Free book on making your own LISP, compiler and all in less than 1000 lines."]]]]
+   [:section
+    [:h3 "Advent of Code"]
+    [:img {:src "img/advent.jpg" :height "100%" :width "200px"}]
+    [:p "The annual " [:a {:href "https://adventofcode.com/"} "Advent of Code"] " is approaching (month of December). Consider trying out a new functional language for some of the challenges"]
+    [:p "Whether that be Clojure, Rust, Haskell, Elixir, Scala, etc or even using a conventional language like Java in a purely-functional style"]]])
 
 (def gif-slide
   [:section {:data-background "http://i.giphy.com/90F8aUepslB84.gif"}
@@ -153,6 +207,9 @@ int doSomething(int y) {
    referential-transparency
    higher-order-functions
    laziness
+   macros
+   companies
+   resources
   ;  gif-slide
   ;  iframe-slide
    ])
