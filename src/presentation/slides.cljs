@@ -60,7 +60,7 @@
     [:h3 "Immutability"]
     [:ul
      [:li "Cannot modify inputs to function"]
-     [:li "Cannot modify sate outside of functions scope"]]]
+     [:li "Cannot modify state outside of functions scope"]]]
    [:section
     [:h3 "Why is Mutability Harmful?"]
     [:pre
@@ -79,7 +79,7 @@ int doSomething(int y) {
   [:section
    [:h3 "Referential Transparency"]
    [:ul
-    [:li "You can replace the call to a function with a value you would expect it to return"]
+    [:li "You can replace the call to a function with the value you would expect it to return"]
     [:ul
      [:li "This requires the function to be pure"]
      [:ul
@@ -95,6 +95,39 @@ int doSomething(int y) {
      [:li "Take in a function as input"]
      [:li "Return a new function as output"]]
     [:li "Allows you to create a bunch of small distinct functions and combine them together (function composition)"]]])
+
+(def basics-of-clojure
+  [:section
+   [:section
+    [:h3 "Basics of Clojure - Data Types"]
+    [:ul
+     [:li "Numbers - " [:code "1,2,3,4"] " (Java's Long)"]
+     [:li "Floating Point - " [:code "1.23"] " (Java's Double)"]
+     [:li "Ratios - " [:code "1/2,1/4,1/8"]]
+     [:li "Strings - " [:code "\"Hello\""]]
+     [:li "Vectors - " [:code "[1 2 3]"] " (Commas are Optional)"]
+     [:li "Lists - " [:code "(1 2 3)"]]
+     [:li "Keywords - " [:code ":x, :hair-colour, :name"]]
+     [:li "Maps - " [:code "{:name \"Dan\" :hair-colour \"blond\"}"]]
+     [:li "Null - " [:code "nil"]]]]
+   [:section
+    [:h3 "Functions and \"Variables\""]
+    [:ul
+     [:li "Variables - " [:code "(def fav-colour :red)"]]
+     [:li "Function calls are wrapped in paranthesis and in a prefix style."]
+     [:ul
+      [:li "Add 1,2,3,4,5 - " [:code "(+ 1 2 3 4 5)"]]]
+     [:li "Functions can be defined using the " [:code "defn"] " macro (more on that later)"]]]
+   [:section
+    [:h3 "Creating a function"]
+    [:pre
+     [:code {:class "hljs clojure" :data-trim true :data-noescape true}
+      "
+(defn add-numbers
+  “A function that adds two numbers together”
+  [x y]
+  (+ x y))
+"]]]])
 
 (def laziness
   [:section
@@ -140,9 +173,9 @@ int doSomething(int y) {
    [:section
     [:h3 "The code is data"]
     [:ul
-     [:li "One common theme in LISP style languages is that the code is at the end of the day, a list, data."]
+     [:li "One common theme in LISP style languages is that at the end of the day the code is a list, data."]
      [:li "Well if the code is data, that means we can manipulate and extend it however we want"]
-     [:li "If you don't like something about Clojure or want to add something, you actually can"]]]
+     [:li "If you don't like something about Clojure or want to add something, you actually can!"]]]
    [:section
     [:h3 "A simple macro"]
     [:p "A macro will, at compile-time, modify the code represented as a list and return it.  The possibilities are endless"]
@@ -180,7 +213,7 @@ int doSomething(int y) {
      [:li [:a {:href "http://clojuredocs.org/"} "Clojure documentation website"]]
      [:li [:a {:href "https://exercism.io/"} "Programming problems for various languages, offers mentorship feedback as well"]]
      [:li [:a {:href "http://learnyouahaskell.com/chapters"} "Free beginner level Haskell book"]]
-     [:li [:a {:href "http://www.buildyourownlisp.com/contents"} "Free book on making your own LISP, compiler and all in less than 1000 lines."]]]]
+     [:li [:a {:href "http://www.buildyourownlisp.com/contents"} "Free book on making your own LISP, compiler and all, in less than 1000 lines."]]]]
    [:section
     [:h3 "Advent of Code"]
     [:img {:src "img/advent.jpg" :height "100%" :width "200px"}]
@@ -206,6 +239,7 @@ int doSomething(int y) {
    immutability
    referential-transparency
    higher-order-functions
+   basics-of-clojure
    laziness
    macros
    companies
