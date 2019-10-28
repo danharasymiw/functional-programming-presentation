@@ -20,7 +20,7 @@
              [:ul
               [:li "2012"]
               [:ul
-               [:li "Introduced to functional programming languages (Scala?) in Programming Languages course in second year"]
+               [:li "Introduced to functional programming languages (lisp?) in Programming Languages course in second year"]
                [:ul
                 [:li "Seemed like a meme"]
                 [:li "It looks weird. Kinda confusing. Why would I ever use this over “normal” languages?"]]]]]
@@ -30,7 +30,7 @@
            [:li "Graduated from Algoma University"]
            [:li "Hired on at Workiva"
             [:ul
-             [:li "No sign of silly functional languages in insight"]]]]]]]
+             [:li "No sign of silly functional languages in sight"]]]]]]]
    [:section
     [:ul [:li "2018"
           [:ul
@@ -46,13 +46,13 @@
   [:section
    [:h3 "What is Functional Programming? (TLDR)"]
    [:ul
-    [:li "Programs are made with functons"]
+    [:li "Programs are made with functions"]
     [:ul
      [:li "Given certain inputs, you'll get certain outputs"]]
     [:li "Avoids changing state and mutating data"]
     [:li "Common characteristics of a functional language are:"]
     [:ul
-     [:li "Immutability, higher order functions, laziness, purity and referential transparency"]]]])
+     [:li "Immutability, higher order functions, laziness, and referential transparency"]]]])
 
 (def immutability
   [:section
@@ -84,7 +84,7 @@ int doSomething(int y) {
      [:li "This requires the function to be pure"]
      [:ul
       [:li "Given the same input, a function will always return the same output"]
-      [:li "No side-effects! (ie. printing, displaying on screen, modifying a global var)"]]]]])
+      [:li "No side-effects! (ie. modifying a global variable, printing to a screen)"]]]]])
 
 (def higher-order-functions
   [:section
@@ -110,14 +110,11 @@ int doSomething(int y) {
      [:li "Keywords - " [:code ":x, :hair-colour, :name"]]
      [:li "Maps - " [:code "{:name \"Dan\" :hair-colour \"blond\"}"]]
      [:li "Null - " [:code "nil"]]]]
-   [:section
-    [:h3 "Functions and \"Variables\""]
-    [:ul
-     [:li "Variables - " [:code "(def fav-colour :red)"]]
-     [:li "Function calls are wrapped in paranthesis and in a prefix style."]
-     [:ul
-      [:li "Add 1,2,3,4,5 - " [:code "(+ 1 2 3 4 5)"]]]
-     [:li "Functions can be defined using the " [:code "defn"] " macro (more on that later)"]]]
+   [:section                                                ; TODO CHANGE THIS - SHOW HOW TO CALL A FUNCTION FIRST, THEN SHOW HOW TO DECLARE A VARIABLE, THEN SHOW HOW TO DECLARE A FUNCTION
+    [:h4 "Calling a function"]
+    [:pre [:code {:class "hljs clojure" :data-trim true :data-noescape true} "(+ 1 2 3 4)"]]
+    [:h4 "Creating a variable"]
+    [:pre [:code {:class "hljs clojure" :data-trim true :data-noescape true} "(def fav-colour :red)"]]]
    [:section
     [:h3 "Creating a function"]
     [:pre
@@ -151,22 +148,23 @@ int doSomething(int y) {
 
 (take 5 infinite-list) ; => (\"INFINITE\" \"INFINITE\" \"INFINITE\" \"INFINITE\" \"INFINITE\")
 "]]]
-   [:section
-    [:h3 "Higher Order Function Example"]
-    [:pre
-     [:code {:class "hljs clojure" :data-trim true :data-noescape true}
-      "
-; Given a list of numbers, we'd like to square them all
-(def numbers '(1 2 3 4 5))
-
-; Create a function that squares the number
-(defn multiply-number [n]
-  (* n n))
-
-; Map that function onto the elements of the list
-; Where's the loop!?
-(map multiply-number numbers) ; => (1 4 9 16 25)
-"]]]])
+;   [:section
+;    [:h3 "Higher Order Function Example"]
+;    [:pre
+;     [:code {:class "hljs clojure" :data-trim true :data-noescape true}
+;      "
+;; Given a list of numbers, we'd like to square them all
+;(def numbers '(1 2 3 4 5))
+;
+;; Create a function that squares the number
+;(defn multiply-number [n]
+;  (* n n))
+;
+;; Map that function onto the elements of the list
+;; Where's the loop!?
+;(map multiply-number numbers) ; => (1 4 9 16 25)
+;"]]]
+   ])
 
 (def macros
   [:section
@@ -202,7 +200,7 @@ int doSomething(int y) {
      [:li [:a {:href "https://engineering.fb.com/security/fighting-spam-with-haskell/"} "Facebook - Fighting spam with Haskell"]]
      [:li [:a {:href "http://blog.cognitect.com/blog/2015/6/30/walmart-runs-clojure-at-scale"} "Walmart Runs Clojure at Scale"]]
      [:li [:a {:href "https://blog.developer.atlassian.com/why-clojure/"} "Atlassian - Why you should use Clojure for your next microservice"]]
-     [:li [:a {:href "https://www.salttoday.ca"} "SaltToday.ca uses Clojure to make a mockery of SooToday's comments"]]]]])
+     [:li [:a {:href "https://www.salttoday.ca"} "SaltToday.ca uses Clojure to collect and rank SooToday's comments"]]]]])
 
 (def resources
   [:section
@@ -235,14 +233,15 @@ int doSomething(int y) {
   []
   [intro
    history
+   companies
    what-is-functional-programming
    immutability
    referential-transparency
+
+   laziness
    higher-order-functions
    basics-of-clojure
-   laziness
    macros
-   companies
    resources
   ;  gif-slide
   ;  iframe-slide
