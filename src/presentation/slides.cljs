@@ -70,10 +70,8 @@ int " [:mark "x"] " = 5;
 int doSomething(int y) {
   " [:mark "x"] " += 2;
   return " [:mark "x"] " + y;
-}"]]]
-   [:section {:data-background "img/forbids-it.png"}
-    ""]
-   ])
+}"]]]])
+
 
 (def referential-transparency
   [:section
@@ -105,16 +103,15 @@ int doSomething(int y) {
      [:li "Floating Point - " [:code "1.23"] " (Java's Double)"]
      [:li "Ratios - " [:code "1/2,1/4,1/8"]]
      [:li "Strings - " [:code "\"Hello\""]]
+     [:li "Characters - " [:code "#\"A\""]]
      [:li "Vectors - " [:code "[1 2 3]"] " (Commas are Optional)"]
      [:li "Lists - " [:code "(1 2 3)"]]
-     [:li "Keywords - " [:code ":x, :hair-colour, :name"]]
-     [:li "Maps - " [:code "{:name \"Dan\" :hair-colour \"blond\"}"]]
      [:li "Null - " [:code "nil"]]]]
-   [:section                                                ; TODO CHANGE THIS - SHOW HOW TO CALL A FUNCTION FIRST, THEN SHOW HOW TO DECLARE A VARIABLE, THEN SHOW HOW TO DECLARE A FUNCTION
+   [:section
     [:h4 "Calling a function"]
     [:pre [:code {:class "hljs clojure" :data-trim true :data-noescape true} "(+ 1 2 3 4)"]]
     [:h4 "Creating a variable"]
-    [:pre [:code {:class "hljs clojure" :data-trim true :data-noescape true} "(def fav-colour :red)"]]]
+    [:pre [:code {:class "hljs clojure" :data-trim true :data-noescape true} "(def fav-number 7)"]]]
    [:section
     [:h3 "Creating a function"]
     [:pre
@@ -146,8 +143,8 @@ int doSomething(int y) {
 
 (first infinite-list) ; => \"INFINITE\"
 
-(take 5 infinite-list) ; => (\"INFINITE\" \"INFINITE\" \"INFINITE\" \"INFINITE\" \"INFINITE\")
-"]]]
+(take 3 infinite-list) ; => (\"INFINITE\" \"INFINITE\" \"INFINITE\")
+"]]]])
 ;   [:section
 ;    [:h3 "Higher Order Function Example"]
 ;    [:pre
@@ -164,7 +161,7 @@ int doSomething(int y) {
 ;; Where's the loop!?
 ;(map multiply-number numbers) ; => (1 4 9 16 25)
 ;"]]]
-   ])
+
 
 (def macros
   [:section
@@ -211,12 +208,13 @@ int doSomething(int y) {
      [:li [:a {:href "http://clojuredocs.org/"} "Clojure documentation website"]]
      [:li [:a {:href "https://exercism.io/"} "Programming problems for various languages, offers mentorship feedback as well"]]
      [:li [:a {:href "http://learnyouahaskell.com/chapters"} "Free beginner level Haskell book"]]
-     [:li [:a {:href "http://www.buildyourownlisp.com/contents"} "Free book on making your own LISP, compiler and all, in less than 1000 lines."]]]]
-   [:section
-    [:h3 "Advent of Code"]
-    [:img {:src "img/advent.jpg" :height "100%" :width "200px"}]
-    [:p "The annual " [:a {:href "https://adventofcode.com/"} "Advent of Code"] " is approaching (month of December). Consider trying out a new functional language for some of the challenges"]
-    [:p "Whether that be Clojure, Rust, Haskell, Elixir, Scala, etc or even using a conventional language like Java in a purely-functional style"]]])
+     [:li [:a {:href "http://www.buildyourownlisp.com/contents"} "Free book on making your own LISP, compiler and all, in less than 1000 lines."]]]]])
+   ;[:section
+   ; [:h3 "Advent of Code"]
+   ; [:img {:src "img/advent.jpg" :height "100%" :width "200px"}]
+   ; [:p "The annual " [:a {:href "https://adventofcode.com/"} "Advent of Code"] " is approaching (month of December). Consider trying out a new functional language for some of the challenges"]
+   ; [:p "Whether that be Clojure, Rust, Haskell, Elixir, Scala, etc or even using a conventional language like Java in a purely-functional style"]]
+
 
 (def gif-slide
   [:section {:data-background "http://i.giphy.com/90F8aUepslB84.gif"}
@@ -242,7 +240,6 @@ int doSomething(int y) {
    higher-order-functions
    basics-of-clojure
    macros
-   resources
+   resources])
   ;  gif-slide
   ;  iframe-slide
-   ])
