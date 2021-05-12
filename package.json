@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/DanHarasymiw/functional-programming-presentation#readme",
   "dependencies": {
-    "reveal.js": "^3.8.0"
+    "reveal.js": "^3.9.2"
   }
 }
